@@ -1,0 +1,448 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register - SSV AARI WORK{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <div class="register-background">
+        <div class="container">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-xl-8 col-lg-9 col-md-10">
+                    <div class="register-card animate-fade-in">
+                        <div class="register-header">
+                            <div class="register-logo">
+                                <img src="{% static 'images/ssvlogo.png' %}" alt="SSV AARI WORK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="logo-text" style="display: none;">
+                                    <span class="logo-letter">S</span><span class="logo-letter">S</span><span class="logo-letter">V</span>
+                                    <div class="logo-subtitle">AARI WORK</div>
+                                </div>
+                            </div>
+                            <h2 class="register-title">Create Account</h2>
+                            <p class="register-subtitle">Join the SSV AARI WORK community and start your journey</p>
+                        </div>
+
+                        <div class="register-body">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-enhanced">
+                                        <i class="fas fa-{% if message.tags == 'success' %}check-circle{% else %}exclamation-triangle{% endif %} me-2"></i>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="post" class="register-form" novalidate>
+                                {% csrf_token %}
+
+                                <div class="form-group-enhanced">
+                                    <div class="input-group-enhanced">
+                                        <div class="input-icon">
+                                            <i class="fas fa-at"></i>
+                                        </div>
+                                        <div class="input-field">
+                                            {{ form.username }}
+                                        </div>
+                                    </div>
+                                    {% if form.username.errors %}
+                                        <div class="form-error">
+                                            {% for error in form.username.errors %}
+                                                <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group-enhanced">
+                                    <div class="input-group-enhanced">
+                                        <div class="input-icon">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <div class="input-field">
+                                            {{ form.email }}
+                                        </div>
+                                    </div>
+                                    {% if form.email.errors %}
+                                        <div class="form-error">
+                                            {% for error in form.email.errors %}
+                                                <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group-enhanced">
+                                    <div class="input-group-enhanced">
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div class="input-field">
+                                            {{ form.password1 }}
+                                        </div>
+                                        <div class="input-toggle">
+                                            <i class="fas fa-eye toggle-password" onclick="togglePassword(this)"></i>
+                                        </div>
+                                    </div>
+                                    {% if form.password1.errors %}
+                                        <div class="form-error">
+                                            {% for error in form.password1.errors %}
+                                                <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group-enhanced">
+                                    <div class="input-group-enhanced">
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <div class="input-field">
+                                            {{ form.password2 }}
+                                        </div>
+                                        <div class="input-toggle">
+                                            <i class="fas fa-eye toggle-password" onclick="togglePassword(this)"></i>
+                                        </div>
+                                    </div>
+                                    {% if form.password2.errors %}
+                                        <div class="form-error">
+                                            {% for error in form.password2.errors %}
+                                                <i class="fas fa-exclamation-circle me-1"></i>{{ error }}
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group-enhanced">
+                                    <div class="form-check-enhanced">
+                                        <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                        <label class="form-check-label" for="termsCheck">
+                                            I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="privacy-link">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-register">
+                                    <span class="btn-text">
+                                        <i class="fas fa-user-plus me-2"></i>Create Account
+                                    </span>
+                                    <div class="btn-ripple"></div>
+                                </button>
+
+                                <div class="register-footer">
+                                    <p>Already have an account?
+                                        <a href="{% url 'login' %}" class="login-link">Sign in here</a>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function togglePassword(icon) {
+    const input = icon.closest('.input-group-enhanced').querySelector('input[type="password"], input[type="text"]');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>
+
+<style>
+.register-container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-background {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 50%, #FFD035 100%);
+    position: relative;
+    min-height: 100vh;
+}
+
+.register-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.2;
+}
+
+.register-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.register-header {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    padding: 30px 20px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.register-logo {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.logo-letter {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #FFD035;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 2px;
+    animation: letter-glow 2s infinite;
+}
+
+@keyframes letter-glow {
+    0%, 100% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+    50% { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5); }
+}
+
+.logo-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 5px;
+}
+
+.register-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.register-subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.register-body {
+    padding: 30px 20px;
+}
+
+.form-group-enhanced {
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.input-group-enhanced {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    min-height: 50px;
+}
+
+.input-group-enhanced:focus-within {
+    border-color: #950101;
+    box-shadow: 0 0 0 3px rgba(149, 1, 1, 0.1);
+    background: #fff;
+}
+
+.input-icon {
+    padding: 12px;
+    color: #950101;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    border-radius: 10px 0 0 10px;
+}
+
+.input-field {
+    flex: 1;
+    position: relative;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #333;
+    outline: none;
+    line-height: 1.2;
+}
+
+.input-field input::placeholder {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+.input-toggle {
+    padding: 12px;
+    cursor: pointer;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.input-toggle:hover {
+    color: #950101;
+}
+
+.form-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-enhanced {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.form-check-input {
+    margin-top: 2px;
+    transform: scale(1.1);
+}
+
+.terms-link,
+.privacy-link {
+    color: #950101;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.terms-link:hover,
+.privacy-link:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    border: none;
+    border-radius: 12px;
+    color: #FFD035;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-register:hover {
+    background: linear-gradient(135deg, #800000 0%, #CC0000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(149, 1, 1, 0.3);
+}
+
+.btn-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-register:active .btn-ripple {
+    width: 300px;
+    height: 300px;
+}
+
+.register-footer {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.register-footer p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.login-link {
+    color: #950101;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+.alert-enhanced {
+    border-radius: 10px;
+    border: none;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .register-card {
+        margin: 15px;
+    }
+
+    .register-header,
+    .register-body {
+        padding: 25px 15px;
+    }
+
+    .form-check-enhanced {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+{% endblock %}

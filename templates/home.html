@@ -1,0 +1,577 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - SSV AARI WORK{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section position-relative" style="background: linear-gradient(rgba(128, 0, 0, 0.7), rgba(255, 208, 53, 0.6)), url(&quot;{% if hero and hero.background_image %}{{ hero.background_image.url }}{% else %}{% static 'images/homebg.png' %}{% endif %}&quot;); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6 hero-content">
+{% if hero %}
+                <div class="animate-fade-in">
+                    <h1 class="display-2 fw-bold text-white mb-4 hero-title" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        {{ hero.title }}
+                    </h1>
+                    <p class="lead text-white mb-5 fs-5" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                        {{ hero.subtitle }}
+                    </p>
+                    <div class="d-flex gap-4 animate-bounce-in mb-5 justify-content-center">
+                        <a href="{{ hero.primary_button_url }}" class="btn btn-light btn-lg px-0   px-md-5 py-3 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-eye me-2"></i>{{ hero.primary_button_text }}
+                        </a>
+                        <a href="{{ hero.secondary_button_url }}" class="btn btn-outline-light btn-lg px-0 px-md-5 py-3 fw-semibold" style="color: #FFD035 !important; background: linear-gradient(135deg, #3D0000 0%, #000000 100%); border-color: #950101 !important; box-shadow: 0 4px 15px rgba(61, 0, 0, 0.3);">
+                            <i class="fas fa-phone me-2"></i>{{ hero.secondary_button_text }}
+                        </a>
+                    </div>
+                </div>
+{% else %}
+                <div class="animate-fade-in">
+                    <h1 class="display-2 fw-bold text-white mb-4 hero-title" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        Crafting <span class="text-gradient" style="color: #FFD035;">Dreams</span> into Reality
+                    </h1>
+                    <p class="lead text-white mb-5 fs-5" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                        Experience the timeless artistry of traditional AARI embroidery.
+                        Where every thread tells a story and every stitch carries emotion.
+                    </p>
+                    <div class="d-flex gap-4 animate-bounce-in mb-5 justify-content-center">
+                        <a href="{% url 'collections' %}" class="btn btn-light btn-lg px-0   px-md-5 py-3 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-eye me-2"></i>Explore Collections
+                        </a>
+                        <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg px-0 px-md-5 py-3 fw-semibold" style="color: #FFD035 !important; background: linear-gradient(135deg, #3D0000 0%, #000000 100%); border-color: #950101 !important; box-shadow: 0 4px 15px rgba(61, 0, 0, 0.3);">
+                            <i class="fas fa-phone me-2"></i>Get Quote
+                        </a>
+                    </div>
+                </div>
+{% endif %}
+            </div>
+            <div class="col-lg-6">
+                <!-- Right side is intentionally left empty -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+        <div class="animate-bounce">
+            <i class="fas fa-chevron-down text-white fa-2x opacity-75"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Academy Courses Section -->
+<div class="content-section py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center animate-fade-in">
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">Academy Courses</h2>
+                <p class="lead text-muted">Master the art of AARI embroidery with our expert-led courses</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            {% for course in courses %}
+            <div class="col-lg-4 col-md-4 col-12 animate-zoom-in">
+                <div class="course-card card border-0 shadow-lg h-100 overflow-hidden">
+                    <!-- Course Image -->
+                    <div class="course-image position-relative" style="height: 200px;">
+                        {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-100 h-100 object-fit-cover">
+                        {% else %}
+                        <img src="{% static 'images/academy/courses/default-course.jpg' %}" alt="{{ course.title }}" class="w-100 h-100 object-fit-cover">
+                        {% endif %}
+                        <!-- Level Badge -->
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); color: #FFD035; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">
+                                {{ course.level|title }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Course Details -->
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3 fw-bold text-center" style="color: #950101; min-height: 3.5rem; display: flex; align-items: center; justify-content: start; line-height: 1.3; font-size: 1.1rem;">{{ course.title }}</h5>
+
+                        <!-- Duration -->
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="text-muted fw-semibold">{{ course.duration }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-rupee-sign me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="fw-bold" style="color: #950101; font-size: 1.3rem;">{{ course.price }}</span>
+                                <small class="text-muted ms-1">/-</small>
+                            </div>
+                        </div>
+
+                        <!-- Know More Button -->
+                        <a href="{% url 'ssv_academy' %}#courses" class="btn btn-primary w-100 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-graduation-cap me-2"></i>Know More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Fallback static courses -->
+            <div class="col-lg-4 col-md-4 animate-zoom-in">
+                <div class="course-card card border-0 shadow-lg h-100 overflow-hidden">
+                    <div class="course-image position-relative" style="height: 200px;">
+                        <img src="{% static 'images/academy/courses/default-course.jpg' %}" alt="Beginner AARI Embroidery Fundamentals Course" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); color: #FFD035; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">
+                                Beginner
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3 fw-bold text-center" style="color: #950101; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 1.1rem;">Beginner AARI Embroidery Fundamentals Course</h5>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="text-muted fw-semibold">4 Weeks</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-rupee-sign me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="fw-bold" style="color: #950101; font-size: 1.3rem;">2,500</span>
+                                <small class="text-muted ms-1">/-</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'ssv_academy' %}#courses" class="btn btn-primary w-100 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-graduation-cap me-2"></i>Know More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 animate-zoom-in" style="animation-delay: 0.1s;">
+                <div class="course-card card border-0 shadow-lg h-100 overflow-hidden">
+                    <div class="course-image position-relative" style="height: 200px;">
+                        <img src="{% static 'images/academy/courses/intermediate-course.jpg' %}" alt="Intermediate AARI Design & Pattern Course" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); color: #FFD035; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">
+                                Intermediate
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3 fw-bold text-center" style="color: #950101; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 1.1rem;">Intermediate AARI Design & Pattern Course</h5>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="text-muted fw-semibold">6 Weeks</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-rupee-sign me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="fw-bold" style="color: #950101; font-size: 1.3rem;">4,500</span>
+                                <small class="text-muted ms-1">/-</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'ssv_academy' %}#courses" class="btn btn-primary w-100 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-graduation-cap me-2"></i>Know More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 animate-zoom-in" style="animation-delay: 0.2s;">
+                <div class="course-card card border-0 shadow-lg h-100 overflow-hidden">
+                    <div class="course-image position-relative" style="height: 200px;">
+                        <img src="{% static 'images/academy/courses/advanced-course.jpg' %}" alt="Advanced AARI Masterclass & Professional Techniques" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); color: #FFD035; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">
+                                Advanced
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3 fw-bold text-center" style="color: #950101; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 1.1rem;">Advanced AARI Masterclass & Professional Techniques</h5>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="text-muted fw-semibold">8 Weeks</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-rupee-sign me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="fw-bold" style="color: #950101; font-size: 1.3rem;">7,500</span>
+                                <small class="text-muted ms-1">/-</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'ssv_academy' %}#courses" class="btn btn-primary w-100 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-graduation-cap me-2"></i>Know More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 animate-zoom-in" style="animation-delay: 0.3s;">
+                <div class="course-card card border-0 shadow-lg h-100 overflow-hidden">
+                    <div class="course-image position-relative" style="height: 200px;">
+                        <img src="{% static 'images/academy/courses/premium-course.jpg' %}" alt="Premium Bridal AARI & Traditional Wedding Embroidery" class="w-100 h-100 object-fit-cover">
+                        <div class="position-absolute top-0 end-0 m-2">
+                            <span class="badge" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); color: #FFD035; font-weight: 600; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem;">
+                                Premium
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-3 fw-bold text-center" style="color: #950101; min-height: 3.5rem; display: flex; align-items: center; justify-content: center; line-height: 1.3; font-size: 1.1rem;">Premium Bridal AARI & Traditional Wedding Embroidery</h5>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-clock me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="text-muted fw-semibold">12 Weeks</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-rupee-sign me-2" style="color: #950101; font-size: 1.1rem;"></i>
+                                <span class="fw-bold" style="color: #950101; font-size: 1.3rem;">12,500</span>
+                                <small class="text-muted ms-1">/-</small>
+                            </div>
+                        </div>
+                        <a href="{% url 'ssv_academy' %}#courses" class="btn btn-primary w-100 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                            <i class="fas fa-graduation-cap me-2"></i>Know More
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Services Preview -->
+<div class="content-section py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center animate-fade-in">
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">Our Services</h2>
+                <p class="lead text-muted">At SSV Aari Work, we provide exclusive embroidery and tailoring services</p>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+            {% for service in services %}
+            <div class="col-lg-3 col-md-6 animate-zoom-in">
+                <div class="service-box card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="service-icon-box mb-3 mx-auto" style="width: 80px; height: 80px; background: #800000; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="{{ service.icon_class }} fa-2x text-white"></i>
+                    </div>
+                    <h5 class="card-title mb-3 fw-bold" style="color: #950101;">{{ service.title }}</h5>
+                    <p class="card-text text-muted small">{{ service.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg px-5 py-3 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                    Book a Service →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Collections Section -->
+<div class="content-section py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center animate-fade-in">
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">Our Collections</h2>
+                <p class="lead text-muted">Three styles of embroidery collections to match every woman's needs</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for collection in collections %}
+            <div class="col-lg-4 col-md-6 animate-zoom-in">
+                <div class="collection-card position-relative overflow-hidden rounded-3 shadow-lg">
+                    <div class="collection-image" style="height: 400px;">
+                        {% if collection.image %}
+                        <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="w-100 h-100 object-fit-cover">
+                        {% else %}
+                        <img src="{% static 'images/basiccollection.jpg' %}" alt="{{ collection.name }}" class="w-100 h-100 object-fit-cover">
+                        {% endif %}
+                    </div>
+                    <div class="collection-overlay position-absolute bottom-0 w-100 text-center p-4">
+                        <a href="{{ collection.button_url }}" class="btn btn-primary btn-lg w-100 fw-semibold" style="background: linear-gradient(135deg, #3D0000 0%, #000000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(61, 0, 0, 0.3);">
+                            {{ collection.button_text }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Fresh Arrivals Section -->
+<div class="content-section py-5" style="background: #ffffff;">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">Fresh Arrivals</h2>
+            </div>
+        </div>
+
+        <div class="position-relative">
+            <!-- Scroll Container -->
+            <div class="arrivals-scroll-container d-flex gap-3 gap-md-4 overflow-auto pb-3" id="arrivalsContainer">
+                {% for arrival in arrivals %}
+                <div class="arrival-card flex-shrink-0 animate-zoom-in">
+                    <div class="card border-0 shadow-sm h-100" style="width: 280px;">
+                        <div class="position-relative overflow-hidden" style="height: 350px;">
+                            {% if arrival.image %}
+                            <img src="{{ arrival.image.url }}" alt="{{ arrival.name }}" class="w-100 h-100 object-fit-cover">
+                            {% else %}
+                            <img src="{% static 'images/arrivals/fresh1.jpg' %}" alt="{{ arrival.name }}" class="w-100 h-100 object-fit-cover">
+                            {% endif %}
+                            <div class="arrival-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                                <a href="{% url 'collections' %}" class="btn btn-light btn-sm px-3 py-2" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 2px 8px rgba(149, 1, 1, 0.3);">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <!-- No arrivals available -->
+                {% endfor %}
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="scroll-arrow scroll-arrow-left position-absolute top-50 start-0 translate-middle-y d-none d-md-block" onclick="scrollArrivals('left')">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="scroll-arrow scroll-arrow-right position-absolute top-50 end-0 translate-middle-y d-none d-md-block" onclick="scrollArrivals('right')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- SSV Academy Section -->
+<div class="content-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 animate-slide-up">
+                <div class="academy-icon mb-3">
+                    <i class="fas fa-graduation-cap fa-3x" style="color: #950101;"></i>
+                </div>
+                {% if academy %}
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">{{ academy.title }}</h2>
+                <p class="lead text-muted mb-4">
+                    {{ academy.description }}
+                </p>
+                
+                <div class="academy-features mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">{{ academy.feature1 }}</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">{{ academy.feature2 }}</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">{{ academy.feature3 }}</span>
+                    </div>
+                </div>
+
+                <a href="{{ academy.button_url }}" class="btn btn-primary btn-lg px-5 py-3 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                    {{ academy.button_text }} →
+                </a>
+                {% else %}
+                <h2 class="display-6 fw-bold mb-3" style="color: #950101;">SSV Academy</h2>
+                <p class="lead text-muted mb-4">
+                    Learn the art of Aari embroidery from expert women trainers.
+                </p>
+                
+                <div class="academy-features mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">Beginner | Intermediate | Premium Bridal Courses</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">Online & Offline learning</span>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-check-circle me-3" style="color: #950101; font-size: 1.5rem;"></i>
+                        <span class="text-muted">Certification & gallery showcase</span>
+                    </div>
+                </div>
+
+                <a href="{% url 'ssv_academy' %}" class="btn btn-primary btn-lg px-5 py-3 fw-semibold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101 !important; color: #FFD035 !important; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3);">
+                    Enroll Now →
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-6 animate-zoom-in" style="animation-delay: 0.2s;">
+                <div class="academy-image-grid">
+                    <div class="row g-3">
+                        {% if academy %}
+                        <div class="col-6">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden">
+                                {% if academy.image1 %}
+                                <img src="{{ academy.image1.url }}" alt="Academy Image 1" class="w-100 h-100 object-fit-cover">
+                                {% else %}
+                                <img src="{% static 'images/academy/training1.jpg' %}" alt="Academy Image 1" class="w-100 h-100 object-fit-cover">
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden">
+                                {% if academy.image2 %}
+                                <img src="{{ academy.image2.url }}" alt="Academy Image 2" class="w-100 h-100 object-fit-cover">
+                                {% else %}
+                                <img src="{% static 'images/academy/training2.jpg' %}" alt="Academy Image 2" class="w-100 h-100 object-fit-cover">
+                                {% endif %}
+                            </div>  
+                        </div>
+                        <div class="col-12">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden" style="height: 250px;">
+                                {% if academy.image3 %}
+                                <img src="{{ academy.image3.url }}" alt="Academy Image 3" class="w-100 h-100 object-fit-cover">
+                                {% else %}
+                                <img src="{% static 'images/academy/training3.jpg' %}" alt="Academy Image 3" class="w-100 h-100 object-fit-cover">
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="col-6">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden">
+                                <img src="{% static 'images/academy/training1.jpg' %}" alt="Academy Image 1" class="w-100 h-100 object-fit-cover">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden">
+                                <img src="{% static 'images/academy/training2.jpg' %}" alt="Academy Image 2" class="w-100 h-100 object-fit-cover">
+                            </div>  
+                        </div>
+                        <div class="col-12">
+                            <div class="academy-img-card shadow-sm rounded-3 overflow-hidden" style="height: 250px;">
+                                <img src="{% static 'images/academy/training3.jpg' %}" alt="Academy Image 3" class="w-100 h-100 object-fit-cover">
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Gallery Section -->
+<div class="content-section py-5" style="background: #ffffff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold mb-2" style="color: #950101;">Gallery</h2>
+            <p class="text-muted">
+                <i class="fas fa-star" style="color: #FFD035;"></i>
+                Explore our creations
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {% for gallery_item in gallery_items %}
+            <div class="col-lg-4 col-md-6 animate-zoom-in mb-5">
+                <div class="gallery-card position-relative overflow-hidden rounded-3 shadow-sm">
+                    <div class="gallery-image" style="height: 400px;">
+                        {% if gallery_item.image %}
+                        <img src="{{ gallery_item.image.url }}" alt="{{ gallery_item.title }}" class="w-100 h-100 object-fit-cover">
+                        {% else %}
+                        <img src="{% static 'images/gallery/g1.jpg' %}" alt="{{ gallery_item.title }}" class="w-100 h-100 object-fit-cover">
+                        {% endif %}
+                    </div>
+                    <div class="gallery-overlay position-absolute bottom-0 w-100 p-3">
+                        <h5 class="text-white fw-bold mb-0">{{ gallery_item.title }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+</div>
+
+<!-- Testimonials Section -->
+<div class="content-section py-5" style="background: #ffffff;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold mb-2" style="color: #950101;">What Our Students Say</h2>
+            <p class="text-muted">Hear from our satisfied customers</p>
+        </div>
+
+        <div class="position-relative">
+            <!-- Scroll Container -->
+            <div class="testimonials-scroll-container d-flex gap-3 gap-md-4 overflow-hidden" style="scrollbar-width: none !important; -ms-overflow-style: none !important; overflow: -moz-scrollbars-none !important; -webkit-overflow-scrolling: touch;" onscroll="this.style.overflow='hidden';">
+                {% for testimonial in testimonials %}
+                <div class="testimonial-card flex-shrink-0" style="width: 300px;">
+                    <div class="card border-0 shadow-sm h-100 text-center">
+                        {% if testimonial.video %}
+                        <div class="testimonial-video mb-3" style="width: 100%; height: 500px; overflow: hidden; border-radius: 10px;">
+                            <video class="w-100 h-100" style="object-fit: cover; cursor: pointer;" onmouseenter="this.play()" onmouseleave="this.pause()">
+                                <source src="{{ testimonial.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        {% endif %}
+                        <div class="card-body p-4">
+                            <p class="testimonial-content text-muted mb-3">"{{ testimonial.content }}"</p>
+                            <h6 class="testimonial-name fw-bold" style="color: #950101;">{{ testimonial.name }}</h6>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="scroll-arrow scroll-arrow-left position-absolute top-50 start-0 translate-middle-y d-none d-md-block" onclick="scrollTestimonials('left')">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="scroll-arrow scroll-arrow-right position-absolute top-50 end-0 translate-middle-y d-none d-md-block" onclick="scrollTestimonials('right')">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose SSV Aari Work Section -->
+<div class="content-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold mb-2" style="color: #950101;">Why Choose SVV Aari Work?</h2>
+        </div>
+
+        <div class="row g-3 justify-content-center">
+            {% for feature in features %}
+            <div class="col-lg col-md-4 col-sm-6 animate-zoom-in">
+                <div class="feature-card text-center p-3 bg-white rounded-3 shadow-sm h-100">
+                    <div class="feature-icon mb-2">
+                        <div class="icon-circle mx-auto" style="width: 60px; height: 60px; background: linear-gradient(135deg, #800000 0%, #FFD035 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="{{ feature.icon_class }} fa-lg text-white"></i>
+                        </div>
+                    </div>
+                    <h6 class="fw-bold mb-1">{{ feature.title }}</h6>
+                    <p class="text-muted small mb-0">{{ feature.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+    

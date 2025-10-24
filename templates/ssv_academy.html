@@ -1,0 +1,808 @@
+{% extends 'base.html' %}
+
+{% block title %}SSV Academy - SSV AARI WORK{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section position-relative">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-geometric-pattern"></div>
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-10 mx-auto text-center hero-content">
+                <h1 class="display-3 fw-bold text-white mb-4 hero-title animate-fade-in" style="animation-delay: 0.2s;">
+                    <span class="brand-name">{% if hero %}{{ hero.title }}{% else %}SSV Academy{% endif %}</span>
+                </h1>
+                <p class="lead text-white mb-5 fs-5 animate-slide-up" style="animation-delay: 0.4s; max-width: 700px; margin: 0 auto;">
+                    {% if hero %}{{ hero.subtitle }}{% else %}Master the art of AARI embroidery from master craftsmen and turn your passion into profession.{% endif %}
+                </p>
+                <div class="hero-stats d-flex justify-content-center gap-4 flex-wrap animate-bounce-in" style="animation-delay: 0.6s;">
+                    <div class="stat-item text-center">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-number">{% if hero %}{{ hero.course_levels }}{% else %}4{% endif %}</div>
+                        <div class="stat-label">Course Levels</div>
+                    </div>
+                    <div class="stat-item text-center">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">{% if hero %}{{ hero.students_trained }}+{% else %}500+{% endif %}</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-item text-center">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-number">{% if hero %}{{ hero.certification_rate }}%{% else %}100%{% endif %}</div>
+                        <div class="stat-label">Certification Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator animate-bounce">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="container">
+        <!-- Academy Introduction -->
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-6 animate-slide-up">
+                <div class="position-relative">
+                    <div class="card shadow-2xl border-0 academy-feature-card">
+                        <div class="card-body p-0">
+                            <div style="height: 400px; background: linear-gradient(rgba(149, 1, 1, 0.3), rgba(255, 208, 53, 0.2)), url('{% if introduction and introduction.background_image %}{{ introduction.background_image.url }}{% else %}/static/images/training1.jpg{% endif %}'); background-size: cover; background-position: center; border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 20px 60px rgba(149, 1, 1, 0.3);">
+                                <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                                    <div class="academy-icon-large mb-4" style="width: 120px; height: 120px; background: linear-gradient(135deg, #FFD035 0%, #FF0000 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 10px 30px rgba(255, 208, 53, 0.4);">
+                                        <i class="fas fa-graduation-cap fa-3x" style="color: #950101;"></i>
+                                    </div>
+                                    <h3 class="fw-bold mb-3" style="font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Learn AARI</h3>
+                                    <p class="opacity-90 fs-5">Traditional Craftsmanship</p>
+                                </div>
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to top, rgba(149, 1, 1, 0.8), transparent);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 animate-slide-up" style="animation-delay: 0.3s;">
+                <div class="academy-content-section">
+                    <h2 class="display-5 fw-bold mb-4" style="color: #950101; font-size: 2.5rem;">{% if introduction %}{{ introduction.title }}{% else %}Master the Art of AARI{% endif %}</h2>
+                    <p class="lead mb-4 fs-5" style="color: #666; line-height: 1.6;">
+                        {% if introduction %}{{ introduction.main_text }}{% else %}At <strong style="color: #950101;">SSV Academy</strong>, we believe that the beauty of AARI embroidery should be shared with the world. Our comprehensive training programs are designed to help you master this traditional craft and turn it into a rewarding profession.{% endif %}
+                    </p>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="academy-feature-item">
+                                <div class="feature-icon-wrapper mb-3">
+                                    <i class="{% if introduction %}{{ introduction.feature1_icon }}{% else %}fas fa-user-graduate{% endif %} fs-3" style="color: #950101;"></i>
+                                </div>
+                                <h6 class="fw-bold mb-2" style="color: #950101;">{% if introduction %}{{ introduction.feature1_title }}{% else %}Expert Instructors{% endif %}</h6>
+                                <p class="text-muted small">{% if introduction %}{{ introduction.feature1_description }}{% else %}Learn from master craftsmen with decades of experience{% endif %}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="academy-feature-item">
+                                <div class="feature-icon-wrapper mb-3">
+                                    <i class="{% if introduction %}{{ introduction.feature2_icon }}{% else %}fas fa-hands-helping{% endif %} fs-3" style="color: #950101;"></i>
+                                </div>
+                                <h6 class="fw-bold mb-2" style="color: #950101;">{% if introduction %}{{ introduction.feature2_title }}{% else %}Hands-on Learning{% endif %}</h6>
+                                <p class="text-muted small">{% if introduction %}{{ introduction.feature2_description }}{% else %}Practical training with real materials and techniques{% endif %}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="academy-feature-item">
+                                <div class="feature-icon-wrapper mb-3">
+                                    <i class="{% if introduction %}{{ introduction.feature3_icon }}{% else %}fas fa-users{% endif %} fs-3" style="color: #950101;"></i>
+                                </div>
+                                <h6 class="fw-bold mb-2" style="color: #950101;">{% if introduction %}{{ introduction.feature3_title }}{% else %}Small Class Sizes{% endif %}</h6>
+                                <p class="text-muted small">{% if introduction %}{{ introduction.feature3_description }}{% else %}Personalized attention in intimate learning environments{% endif %}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="academy-feature-item">
+                                <div class="feature-icon-wrapper mb-3">
+                                    <i class="{% if introduction %}{{ introduction.feature4_icon }}{% else %}fas fa-certificate{% endif %} fs-3" style="color: #950101;"></i>
+                                </div>
+                                <h6 class="fw-bold mb-2" style="color: #950101;">{% if introduction %}{{ introduction.feature4_title }}{% else %}Certification Provided{% endif %}</h6>
+                                <p class="text-muted small">{% if introduction %}{{ introduction.feature4_description }}{% else %}Official recognition of your skills and expertise{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Levels -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-5 animate-fade-in">
+                <h2 class="display-6 fw-bold" style="color: #950101;">Choose Your Learning Path</h2>
+                <p class="lead text-muted">✨ From basic stitches to master-level artistry</p>
+            </div>
+
+            <!-- Beginner Aari Course -->
+            {% for course in courses %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 animate-slide-up">
+                <div class="card h-100 border-0 shadow-lg rounded-4 course-card">
+                    <img src="{% if course.image %}{{ course.image.url }}{% else %}/static/images/act.jpg{% endif %}" class="card-img-top rounded-top-4" alt="{{ course.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">{{ course.title }}</h5>
+                            <small class="text-muted">{{ course.duration }}</small>
+                        </div>
+                        <h3 class="fw-bold mb-3" style="color: #950101;">₹{{ course.price }}</h3>
+                        <p class="card-text text-muted mb-3">{{ course.description }}</p>
+                        <p class="card-text mb-3"><strong>Schedule:</strong> {{ course.schedule }}</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>{{ course.feature1 }}</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>{{ course.feature2 }}</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>{{ course.feature3 }}</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="https://wa.me/+917639027885?text={{ "Hi, I'm interested in enrolling in the " |add:course.title |add:" course. Please provide more details on enrollment." |urlencode }}" target="_blank" class="btn fw-bold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101; color: #FFD035;">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Fallback static courses -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 animate-slide-up">
+                <div class="card h-100 border-0 shadow-lg rounded-4 course-card">
+                    <img src="/static/images/act.jpg" class="card-img-top rounded-top-4" alt="Beginner Aari Course" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Beginner Aari Course</h5>
+                            <small class="text-muted">4 Weeks</small>
+                        </div>
+                        <h3 class="fw-bold mb-3" style="color: #950101;">₹2500.00</h3>
+                        <p class="card-text text-muted mb-3">"Perfect for absolute beginners. Learn the fundamentals of Aari embroidery."</p>
+                        <p class="card-text mb-3"><strong>Schedule:</strong> Mon–Wed–Fri, 10 AM – 12 PM</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Basic stitching techniques</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Thread handling & fabric preparation</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Simple floral patterns</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="https://wa.me/+917639027885?text={{ "Hi, I'm interested in enrolling in the Beginner Aari Course. Please provide more details on enrollment." |urlencode }}" target="_blank" class="btn fw-bold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101; color: #FFD035;">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4 animate-slide-up" style="animation-delay: 0.2s;">
+                <div class="card h-100 border-0 shadow-lg rounded-4 course-card">
+                    <img src="/static/images/act.jpg" class="card-img-top rounded-top-4" alt="Intermediate Aari Course" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Intermediate Aari Course</h5>
+                            <small class="text-muted">6 Weeks</small>
+                        </div>
+                        <h3 class="fw-bold mb-3" style="color: #950101;">₹4500.00</h3>
+                        <p class="card-text text-muted mb-3">"Advance your skills with complex patterns and professional techniques."</p>
+                        <p class="card-text mb-3"><strong>Schedule:</strong> Tue–Thu–Sat, 2 PM – 5 PM</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Advanced stitching patterns</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Color combination techniques</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Medium complexity designs</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="https://wa.me/+917639027885?text={{ "Hi, I'm interested in enrolling in the Intermediate Aari Course. Please provide more details on enrollment." |urlencode }}" target="_blank" class="btn fw-bold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101; color: #FFD035;">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 mb-4 animate-slide-up" style="animation-delay: 0.4s;">
+                <div class="card h-100 border-0 shadow-lg rounded-4 course-card">
+                    <img src="/static/images/act.jpg" class="card-img-top rounded-top-4" alt="Advanced Mastery Course" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title fw-bold mb-0">Advanced Mastery Course</h5>
+                            <small class="text-muted">4 Weeks</small>
+                        </div>
+                        <h3 class="fw-bold mb-3" style="color: #950101;">₹7500.00</h3>
+                        <p class="card-text text-muted mb-3">"Master the art of luxury bridal and designer embroidery work."</p>
+                        <p class="card-text mb-3"><strong>Schedule:</strong> Mon–Wed–Fri, 9 AM – 1 PM</p>
+                        <ul class="list-unstyled mb-4">
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Bridal embroidery mastery</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Designer pattern creation</li>
+                            <li class="mb-2"><i class="fas fa-check me-2" style="color: #950101;"></i>Premium thread techniques</li>
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <a href="https://wa.me/+917639027885?text={{ "Hi, I'm interested in enrolling in the Advanced Mastery Course. Please provide more details on enrollment." |urlencode }}" target="_blank" class="btn fw-bold" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101; color: #FFD035;">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Student Benefits -->
+        <div class="row mb-5">
+            <div class="col-12 text-center mb-5">
+                <h2 class="display-5 fw-bold" style="color: #950101;">Student Benefits</h2>
+            </div>
+
+            <!-- Lifetime Access -->
+            {% for benefit in benefits %}
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 animate-slide-up">
+                <div class="card h-100 border-0 shadow-sm text-center benefit-card">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3 animate-pulse">
+                            <i class="{{ benefit.icon_class }} fs-2"></i>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">{{ benefit.title }}</h5>
+                        <p class="card-text text-muted small">{{ benefit.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 animate-slide-up">
+                <div class="card h-100 border-0 shadow-sm text-center benefit-card">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3 animate-pulse">
+                            <i class="fas fa-infinity fs-2"></i>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">Lifetime Access</h5>
+                        <p class="card-text text-muted small">Video tutorials for online students</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Free Starter Kit -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 animate-slide-up" style="animation-delay: 0.2s;">
+                <div class="card h-100 border-0 shadow-sm text-center benefit-card">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3 animate-pulse" style="animation-delay: 0.2s;">
+                            <i class="fas fa-gift fs-2"></i>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">Free Starter Kit</h5>
+                        <p class="card-text text-muted small">Needles, frame, threads for offline students</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Community Group -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 animate-slide-up" style="animation-delay: 0.4s;">
+                <div class="card h-100 border-0 shadow-sm text-center benefit-card">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3 animate-pulse" style="animation-delay: 0.4s;">
+                            <i class="fas fa-users fs-2"></i>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">Community Group</h5>
+                        <p class="card-text text-muted small">Join SVV Women's support network</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SVV Gallery -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4 animate-slide-up" style="animation-delay: 0.6s;">
+                <div class="card h-100 border-0 shadow-sm text-center benefit-card">
+                    <div class="card-body p-4">
+                        <div class="benefit-icon mb-3 animate-pulse" style="animation-delay: 0.6s;">
+                            <i class="fas fa-images fs-2"></i>
+                        </div>
+                        <h5 class="card-title fw-bold mb-2">SVV Gallery</h5>
+                        <p class="card-text text-muted small">Showcase your beautiful work</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Testimonials -->
+        <div class="row">
+            <div class="col-12 text-center mb-4 animate-fade-in">
+                <h3 class="display-6 fw-bold" style="color: #950101;">Student Success Stories</h3>
+                <p class="lead text-muted">Hear from our graduates</p>
+            </div>
+
+            {% for testimonial in testimonials %}
+            <div class="col-md-6 animate-bounce-in">
+                <div class="card border-0 shadow-sm testimonial-card">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div style="width: 50px; height: 50px; background: {{ testimonial.avatar_color }}; border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">{{ testimonial.name }}</h6>
+                                <small class="text-muted">{{ testimonial.role }}</small>
+                            </div>
+                        </div>
+                        <p class="card-text">
+                            {{ testimonial.content }}
+                        </p>
+                        <div class="d-flex text-warning">
+                            {% for i in "12345" %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- CTA Section -->
+        <div class="row mt-5">
+            <div class="col-12 text-center animate-fade-in">
+                <div class="p-4 bg-light rounded-3 cta-enhanced">
+                    <h4 class="mb-3">{% if cta %}{{ cta.title }}{% else %}Ready to Start Your AARI Journey?{% endif %}</h4>
+                    <p class="text-muted mb-4">{% if cta %}{{ cta.subtitle }}{% else %}Join hundreds of students who have discovered their passion for AARI embroidery{% endif %}</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="https://wa.me/+917639027885?text={{ "Hi, I'm interested in enrolling in the SSV Academy courses. Please provide details on available courses and enrollment process." |urlencode }}" target="_blank" class="btn btn-primary btn-lg" style="color: white; background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border-color: #950101;">
+                            <i class="fas fa-envelope me-2"></i>{% if cta %}{{ cta.button_text }}{% else %}Contact for Enrollment{% endif %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Enhanced Academy Section */
+.academy-feature-card {
+    border-radius: 20px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.academy-feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(149, 1, 1, 0.4) !important;
+}
+
+.academy-icon-large {
+    animation: icon-pulse 3s infinite;
+}
+
+@keyframes icon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(255, 208, 53, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 15px 40px rgba(255, 208, 53, 0.6);
+    }
+}
+
+.academy-content-section {
+    padding: 2rem;
+}
+
+.academy-feature-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(149, 1, 1, 0.05), rgba(255, 208, 53, 0.05));
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.academy-feature-item:hover {
+    background: linear-gradient(135deg, rgba(149, 1, 1, 0.1), rgba(255, 208, 53, 0.1));
+    border-color: #950101;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(149, 1, 1, 0.15);
+}
+
+.feature-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #FFD035 0%, #FF0000 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.academy-feature-item:hover .feature-icon-wrapper {
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 208, 53, 0.4);
+}
+
+/* Enhanced card styling */
+.shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.bg-gradient .fas {
+    color: white !important;
+}
+
+.bg-gradient h3,
+.bg-gradient h6 {
+    color: white !important;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    transition: all 0.3s ease;
+    box-shadow: 0 15px 40px rgba(149, 1, 1, 0.15);
+}
+
+.course-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Enhanced Hero Section */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(rgba(149, 1, 1, 0.8), rgba(255, 208, 53, 0.8)),
+        url('{% if hero and hero.background_image %}{{ hero.background_image.url }}{% else %}/static/images/act.jpg{% endif %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+
+.hero-badge {
+    display: inline-block;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.badge-text {
+    background: #FFD035;
+    color: #950101;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(255, 208, 53, 0.4);
+    position: relative;
+    z-index: 3;
+    border: 2px solid #950101;
+}
+
+.hero-stats {
+    margin-top: 3rem;
+    gap: 3rem !important;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    min-width: 140px;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item:hover {
+    background: #FFD035;
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+    border-color: #950101;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    background: #950101;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover .stat-icon {
+    background: #FFDAB9;
+    transform: rotate(360deg) scale(1.1);
+}
+
+.stat-number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-item:hover .stat-number,
+.stat-item:hover .stat-label {
+    color: #333;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    z-index: 3;
+    animation: bounce 2s infinite;
+    background: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.scroll-indicator:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Enhanced animations */
+.animate-fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInUp 0.8s ease-out;
+}
+
+.animate-bounce-in {
+    animation: bounceInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.3);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translateY(-10px) scale(1.05);
+    }
+    70% {
+        transform: translateY(5px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
+}
+
+/* Course level icons with static colors */
+.course-icon-green {
+    background: #950101 !important;
+}
+
+.course-icon-blue {
+    background: #FFD035 !important;
+}
+
+.course-icon-orange {
+    background: #FFD035 !important;
+}
+
+.course-icon-purple {
+    background: #950101 !important;
+}
+
+/* Feature checkmarks */
+.academy-features .fas {
+    transition: all 0.3s ease;
+    color: #950101 !important;
+}
+
+.academy-features .d-flex:hover .fas {
+    transform: scale(1.2) rotate(360deg);
+    color: #FFD035 !important;
+}
+
+/* Enhanced course cards */
+.course-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.course-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(149, 1, 1, 0.3);
+    border-color: #950101;
+}
+
+.course-card .card-body {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Testimonial cards */
+.testimonial-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid #950101;
+}
+
+.testimonial-card:hover {
+    transform: translateX(10px);
+    border-left-color: #950101;
+    box-shadow: 0 10px 30px rgba(149, 1, 1, 0.15);
+}
+
+/* CTA section enhancement */
+.cta-enhanced {
+    background: linear-gradient(135deg, #950101 0%, #FFD035 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-enhanced::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+    .display-3 {
+        font-size: 2.5rem;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    .hero-stats {
+        gap: 1.5rem !important;
+        margin-top: 2rem;
+    }
+
+    .stat-item {
+        min-width: 120px;
+        padding: 1.5rem 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .hero-badge {
+        margin-bottom: 1.5rem;
+    }
+
+    .badge-text {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(149, 1, 1, 0.2);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem !important;
+        align-items: center;
+    }
+
+    .stat-item {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .cta-enhanced {
+        padding: 3rem 1rem !important;
+    }
+}
+
+/* Responsive Course Cards */
+@media (max-width: 991.98px) {
+    .course-card {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .course-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .course-card .card-img-top {
+        height: 150px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .course-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .course-card .card-body {
+        padding: 1rem;
+    }
+
+    .course-card .card-title {
+        font-size: 1.1rem;
+    }
+}
+</style>
+{% endblock %}

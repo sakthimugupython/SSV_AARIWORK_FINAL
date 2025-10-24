@@ -1,0 +1,492 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - SSV AARI WORK{% endblock %}
+
+{% block content %}
+<div class="hero-section position-relative" style="background: linear-gradient(rgba(128, 0, 0, 0.7), rgba(255, 208, 53, 0.6)), url(&quot;{% if hero and hero.background_image %}{{ hero.background_image.url }}{% else %}{% static 'images/contactbg.jpg' %}{% endif %}&quot;); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-8 mx-auto text-center hero-content">
+{% if hero %}
+                <h1 class="display-3 fw-bold text-white mb-4 hero-title animate-fade-in" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                    {{ hero.title }}
+                </h1>
+                <p class="lead text-white mb-4 animate-slide-up" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                    {{ hero.subtitle }}
+                </p>
+{% else %}
+                <h1 class="display-3 fw-bold text-white mb-4 hero-title animate-fade-in" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                    <span class="text-white">Contact Us</span>
+                </h1>
+                <p class="lead text-white-50 mb-4 animate-slide-up" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                    Get in touch with us for inquiries, custom orders, or workshop registrations
+                </p>
+{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Information -->
+            <div class="col-lg-5 animate-slide-up">
+                <div class="enhanced-contact-card">
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: #800000; font-weight: 700; font-size: 1.5rem; position: relative;">
+                            <i class="fas fa-handshake me-2" style="color: #FFD035;"></i>Get In Touch
+                            <div style="position: absolute; bottom: -5px; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, #800000, #FFD035); border-radius: 2px;"></div>
+                        </h3>
+
+                        <div class="mb-4 contact-info-item" style="padding: 1rem; border-radius: 15px; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, rgba(128,0,0,0.05), rgba(255,208,53,0.05))'" onmouseout="this.style.background='transparent'">
+                            <div class="d-flex align-items-start mb-3">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #800000 0%, #FFD035 100%); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(128,0,0,0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1" style="color: #800000; font-weight: 600;">Visit Our Studio</h6>
+                                    <p class="text-muted mb-0">
+                                        SVV AARI & TAILORING INSTITUTE<br>
+                                        Kamarajar vaniga valagam,<br>
+                                        Sivagurunathapuram,<br>
+                                        Surandai, Tamil Nadu 627859
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 contact-info-item" style="padding: 1rem; border-radius: 15px; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, rgba(255,208,53,0.05), rgba(128,0,0,0.05))'" onmouseout="this.style.background='transparent'">
+                            <div class="d-flex align-items-start mb-3">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFD035 0%, #FFDAB9 100%); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(255,208,53,0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1" style="color: #800000; font-weight: 600;">Call Us</h6>
+                                    <p class="text-muted mb-0">
+                                        +91 97901 17288<br>
+                                        +91 98765 43211
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 contact-info-item" style="padding: 1rem; border-radius: 15px; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, rgba(255,218,185,0.05), rgba(128,0,0,0.05))'" onmouseout="this.style.background='transparent'">
+                            <div class="d-flex align-items-start mb-3">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #FFDAB9 0%, #800000 100%); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(255,218,185,0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1" style="color: #800000; font-weight: 600;">Email Us</h6>
+                                    <p class="text-muted mb-0">
+                                        info@ssvaariwork.com<br>
+                                        contact@ssvaariwork.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4 contact-info-item" style="padding: 1rem; border-radius: 15px; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='linear-gradient(135deg, rgba(128,0,0,0.05), rgba(255,218,185,0.05))'" onmouseout="this.style.background='transparent'">
+                            <div class="d-flex align-items-start mb-3">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #800000 0%, #FFDAB9 100%); border-radius: 50%; margin-right: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 15px rgba(128,0,0,0.3); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1) rotate(5deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1" style="color: #800000; font-weight: 600;">Business Hours</h6>
+                                    <p class="text-muted mb-0">
+                                        Monday - Saturday: 9:00 AM - 7:00 PM<br>
+                                        Sunday: 10:00 AM - 4:00 PM
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="mt-5">
+                            <h6 class="mb-3" style="color: #800000; font-weight: 600; position: relative;">
+                                <i class="fas fa-share-alt me-2" style="color: #FFD035;"></i>Follow Us
+                                <div style="position: absolute; bottom: -5px; left: 0; width: 50px; height: 2px; background: linear-gradient(90deg, #800000, #FFD035); border-radius: 1px;"></div>
+                            </h6>
+                            <div class="d-flex gap-3 justify-content-center">
+                                <a href="#" class="social-icon-btn facebook" style="width: 50px; height: 50px; background: linear-gradient(135deg, #1877f2, #42a5f5); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(24,119,242,0.3);" onmouseover="this.style.transform='translateY(-3px) scale(1.1)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon-btn instagram" style="width: 50px; height: 50px; background: linear-gradient(135deg, #e4405f, #ffd600); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(228,64,95,0.3);" onmouseover="this.style.transform='translateY(-3px) scale(1.1)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon-btn whatsapp" style="width: 50px; height: 50px; background: linear-gradient(135deg, #25d366, #4caf50); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(37,211,102,0.3);" onmouseover="this.style.transform='translateY(-3px) scale(1.1)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="social-icon-btn youtube" style="width: 50px; height: 50px; background: linear-gradient(135deg, #ff0000, #ff6b6b); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255,0,0,0.3);" onmouseover="this.style.transform='translateY(-3px) scale(1.1)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-7 animate-slide-up" style="animation-delay: 0.3s;">
+                <div class="card border-0 shadow-lg enhanced-contact-card" style="background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); border-radius: 20px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #FFD035, #800000, #FFD035);"></div>
+                    <div class="card-body p-4">
+                        <h3 class="card-title mb-4" style="color: #800000; font-weight: 700; font-size: 1.5rem; position: relative;">
+                            <i class="fas fa-envelope me-2" style="color: #FFD035;"></i>Send us a Message
+                            <div style="position: absolute; bottom: -5px; left: 0; width: 80px; height: 3px; background: linear-gradient(90deg, #FFD035, #800000); border-radius: 2px;"></div>
+                        </h3>
+
+                        <!-- Display messages -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %} alert-dismissible fade show enhanced-alert" role="alert" style="border-radius: 15px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                                    <i class="fas {% if message.tags == 'error' %}fa-exclamation-triangle{% else %}fa-check-circle{% endif %} me-2"></i>{{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form id="contactForm" method="post" action="{% url 'contact' %}">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label" style="color: #800000; font-weight: 600; margin-bottom: 0.5rem;">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control enhanced-input" id="name" name="name" required style="border-radius: 12px; border: 2px solid #e9ecef; padding: 0.75rem 1rem; transition: all 0.3s ease; background: #fff;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 0.2rem rgba(128,0,0,0.15)'" onblur="this.style.borderColor='#e9ecef'">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label" style="color: #800000; font-weight: 600; margin-bottom: 0.5rem;">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control enhanced-input" id="email" name="email" required style="border-radius: 12px; border: 2px solid #e9ecef; padding: 0.75rem 1rem; transition: all 0.3s ease; background: #fff;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 0.2rem rgba(128,0,0,0.15)'" onblur="this.style.borderColor='#e9ecef'">
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label" style="color: #800000; font-weight: 600; margin-bottom: 0.5rem;">Phone Number</label>
+                                    <input type="tel" class="form-control enhanced-input" id="phone" name="phone" style="border-radius: 12px; border: 2px solid #e9ecef; padding: 0.75rem 1rem; transition: all 0.3s ease; background: #fff;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 0.2rem rgba(128,0,0,0.15)'" onblur="this.style.borderColor='#e9ecef'">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="subject" class="form-label" style="color: #800000; font-weight: 600; margin-bottom: 0.5rem;">Subject <span class="text-danger">*</span></label>
+                                    <select class="form-select enhanced-input" id="subject" name="subject" required style="border-radius: 12px; border: 2px solid #e9ecef; padding: 0.75rem 1rem; transition: all 0.3s ease; background: #fff;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 0.2rem rgba(128,0,0,0.15)'" onblur="this.style.borderColor='#e9ecef'">
+                                        <option value="">Select a subject</option>
+                                        <option value="custom-order">Custom Order</option>
+                                        <option value="workshop">Workshop Inquiry</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="partnership">Partnership</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="message" class="form-label" style="color: #800000; font-weight: 600; margin-bottom: 0.5rem;">Message <span class="text-danger">*</span></label>
+                                <textarea class="form-control enhanced-input" id="message" name="message" rows="6" required placeholder="Tell us about your project, requirements, or how we can help you..." style="border-radius: 12px; border: 2px solid #e9ecef; padding: 0.75rem 1rem; transition: all 0.3s ease; background: #fff; resize: vertical;" onfocus="this.style.borderColor='#800000'; this.style.boxShadow='0 0 0 0.2rem rgba(128,0,0,0.15)'" onblur="this.style.borderColor='#e9ecef'"></textarea>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-lg w-100 enhanced-submit-btn" style="background: linear-gradient(135deg, #800000 0%, #FFD035 100%); border: none; color: white; font-weight: 600; padding: 1rem 2rem; border-radius: 15px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(128,0,0,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(128,0,0,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(128,0,0,0.3)'">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Map Section -->
+        <div class="row mt-5">
+            <div class="col-12 animate-fade-in">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h4 class="card-title mb-0" style="color: #800000; font-weight: 700;">
+                            <i class="fas fa-map-marked-alt me-2" style="color: #FFD035;"></i>Find Us Here
+                        </h4>
+                    </div>
+                    <div class="card-body p-0">
+                        <!-- Full Width Map Container -->
+                        <div class="map-container" style="height: 450px; position: relative; border-radius: 0 0 15px 15px; overflow: hidden;">
+                            <!-- Google Maps Embed (No API Key Required) -->
+                            <iframe
+                                src="https://maps.google.com/maps?q=SVV+AARI+TAILORING+INSTITUTE+Kamarajar+vaniga+valagam+Sivagurunathapuram+Surandai+Tamil+Nadu+627859&output=embed"
+                                style="border: 0; width: 100%; height: 100%;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="SVV AARI & TAILORING INSTITUTE Location">
+                            </iframe>
+
+                            <!-- Loading overlay (shown while map loads) -->
+                            <div id="map-loading" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #800000 0%, #FFD035 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; font-size: 1.2rem; z-index: 10;">
+                                <div style="width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem;"></div>
+                                <div>Loading Map...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Directions Section -->
+        <div class="row mt-4">
+            <div class="col-12 text-center animate-fade-in">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body py-4">
+                        <div class="d-flex flex-column align-items-center">
+                            <h5 class="card-title mb-3" style="color: #800000; font-weight: 700;">
+                                <i class="fas fa-directions me-2" style="color: #FFD035;"></i>Get Directions to Our Studio
+                            </h5>
+                            <p class="text-muted mb-4">Find us at Kamarajar vaniga valagam, Sivagurunathapuram, Surandai, Tamil Nadu 627859</p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=SVV+AARI+TAILORING+INSTITUTE+Kamarajar+vaniga+valagam+Sivagurunathapuram+Surandai+Tamil+Nadu+627859"
+                               target="_blank"
+                               class="btn btn-primary btn-lg px-5 py-3"
+                               style="background: linear-gradient(135deg, #800000 0%, #FFD035 100%); border: none; color: white; font-weight: 600; border-radius: 15px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(128,0,0,0.3);">
+                                <i class="fas fa-route me-2"></i>Open in Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 text-center mb-4 animate-fade-in">
+                <h3 class="display-6 fw-bold">Frequently Asked Questions</h3>
+                <p class="lead text-muted">Quick answers to common questions</p>
+            </div>
+
+            <div class="col-md-6 animate-bounce-in">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color: #800000;">Q: Do you offer custom embroidery services?</h6>
+                        <p class="card-text text-muted">
+                            A: Yes! We specialize in custom AARI embroidery work tailored to your specific requirements and design preferences.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 animate-bounce-in" style="animation-delay: 0.2s;">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h6 class="card-title" style="color: #800000;">Q: How long does a typical project take?</h6>
+                        <p class="card-text text-muted">
+                            A: Project timelines vary based on complexity, but most custom orders are completed within 2-4 weeks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .enhanced-contact-card {
+        transition: all 0.3s ease;
+        border: none !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
+    }
+
+    .enhanced-contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.15) !important;
+    }
+
+    .contact-info-item:hover {
+        background: linear-gradient(135deg, rgba(128,0,0,0.05), rgba(255,208,53,0.05)) !important;
+    }
+
+    .social-icon-btn:hover {
+        transform: translateY(-3px) scale(1.1) !important;
+    }
+
+    .enhanced-input:focus {
+        border-color: #800000 !important;
+        box-shadow: 0 0 0 0.2rem rgba(128,0,0,0.15) !important;
+    }
+
+    .enhanced-submit-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(128,0,0,0.4) !important;
+    }
+
+    /* Directions button styling */
+    .btn-primary:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(128,0,0,0.4) !important;
+    }
+
+    .enhanced-alert {
+        animation: slideInAlert 0.5s ease-out;
+    }
+
+    @keyframes slideInAlert {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .enhanced-contact-card {
+            margin-bottom: 2rem;
+        }
+
+        .social-icon-btn {
+            width: 45px !important;
+            height: 45px !important;
+        }
+    }
+
+    /* Loading animation for form submission */
+    .enhanced-submit-btn.submitting {
+        opacity: 0.7;
+        pointer-events: none;
+    }
+
+    .enhanced-submit-btn.submitting::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+        margin-left: 8px;
+    }
+
+    /* Map Section Responsive Styles */
+    @media (max-width: 991.98px) {
+        .map-container {
+            height: 350px !important;
+            border-radius: 0 0 15px 15px !important;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .map-container {
+            height: 300px !important;
+            border-radius: 0 0 15px 15px !important;
+        }
+    }
+
+    @media (max-width: 575.98px) {
+        .map-container {
+            height: 250px !important;
+            border-radius: 0 0 15px 15px !important;
+        }
+    }
+
+    /* Map loading animation enhancement */
+    .map-loading-spinner {
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Ripple animation for social buttons */
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+</style>
+
+<script>
+    // Enhanced form submission with loading state
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('.enhanced-submit-btn');
+        const originalText = submitBtn.innerHTML;
+
+        // Show loading state with enhanced styling
+        submitBtn.classList.add('submitting');
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        submitBtn.disabled = true;
+
+        // Let the form submit naturally to Django view
+        // The page will redirect based on success/error
+    });
+
+    // Enhanced input animations and interactions
+    document.querySelectorAll('.enhanced-input').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.transform = 'scale(1.02)';
+        });
+
+        input.addEventListener('blur', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // Social media button click animations
+    document.querySelectorAll('.social-icon-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.5);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+            `;
+
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+
+    // Map loading functionality - Simplified
+    window.addEventListener('load', function() {
+        const mapLoading = document.getElementById('map-loading');
+        const mapIframe = document.querySelector('iframe[src*="google.com/maps"]');
+
+        if (mapIframe && mapLoading) {
+            // Simple timeout to hide loading after 3 seconds
+            setTimeout(function() {
+                mapLoading.style.display = 'none';
+            }, 3000);
+        }
+    });
+</script>
+{% endblock %}

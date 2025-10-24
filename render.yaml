@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: ssv-aari-work
+    env: python
+    region: oregon
+    plan: starter
+    branch: main
+    buildCommand: "python -m pip install --upgrade pip setuptools wheel && pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn ssv_aari_work.wsgi --log-file -"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: ssv_aari_work.settings
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "your-app.onrender.com"
+
+databases:
+  - name: ssv-aari-db
+    plan: free
+    region: oregon
+
+# Notes:
+# - Replace `your-app.onrender.com` with your actual Render service URL.
+# - Render will expose a DATABASE_URL env var for the managed DB; no need to
+#   place credentials here. Remove the `databases` block if you provision DB
+#   separately in the Render UI.

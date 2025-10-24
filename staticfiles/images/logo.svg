@@ -1,0 +1,15 @@
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="50" fill="transparent"/>
+
+  <!-- SSV Text -->
+  <text x="10" y="35" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#FFD035" text-shadow="2px 2px 4px rgba(0,0,0,0.5)">SSV</text>
+
+  <!-- AARI WORK Text -->
+  <text x="80" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#FFD035" letter-spacing="2px">AARI</text>
+  <text x="80" y="35" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#FFD035" letter-spacing="2px">WORK</text>
+
+  <!-- Decorative elements -->
+  <circle cx="170" cy="25" r="8" fill="#FF0000" opacity="0.8"/>
+  <circle cx="185" cy="25" r="6" fill="#FFD035" opacity="0.9"/>
+</svg>

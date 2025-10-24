@@ -1,0 +1,188 @@
+/* Custom Admin Dashboard Styling for SSV ARRI WORK */
+
+/* Section Headers in Sidebar */
+.admin-section-header {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    padding: 8px 16px;
+    margin: 8px 0 4px 0;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Model Group Styling */
+.model-group {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Home Page Models */
+.model-group.home-models .admin-section-header {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+/* About Page Models */
+.model-group.about-models .admin-section-header {
+    background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+}
+
+/* Academy Page Models */
+.model-group.academy-models .admin-section-header {
+    background: linear-gradient(135deg, #fd7e14 0%, #e83e8c 100%);
+}
+
+/* Enhanced Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    border-radius: 12px 12px 0 0 !important;
+    font-weight: bold;
+}
+
+/* Button Enhancements */
+.btn-primary {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #800000 0%, #CC0000 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(149, 1, 1, 0.3);
+}
+
+/* Form Enhancements */
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #950101;
+    box-shadow: 0 0 0 3px rgba(149, 1, 1, 0.1);
+}
+
+/* Table Enhancements */
+.table {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    border: none;
+    font-weight: 600;
+    padding: 16px;
+}
+
+.table tbody td {
+    padding: 16px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(149, 1, 1, 0.05);
+}
+
+/* Navigation Enhancements */
+.nav-sidebar .nav-link {
+    border-radius: 8px;
+    margin: 2px 8px;
+    padding: 10px 16px;
+    transition: all 0.2s;
+}
+
+.nav-sidebar .nav-link:hover {
+    background: rgba(255, 208, 53, 0.1);
+    color: #950101;
+}
+
+/* Page Header */
+.content-header {
+    background: linear-gradient(135deg, #950101 0%, #FF0000 100%);
+    color: #FFD035;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Breadcrumb Styling */
+.breadcrumb {
+    background: rgba(149, 1, 1, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+}
+
+.breadcrumb-item.active {
+    color: #950101;
+    font-weight: bold;
+}
+
+/* Footer Enhancement */
+.footer {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-top: 1px solid #dee2e6;
+    padding: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .admin-section-header {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
+
+    .btn-primary {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Dark Mode Support (if enabled) */
+@media (prefers-color-scheme: dark) {
+    .card {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+
+    .table {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+
+    .form-control {
+        background: #4a5568;
+        border-color: #718096;
+        color: #e2e8f0;
+    }
+}

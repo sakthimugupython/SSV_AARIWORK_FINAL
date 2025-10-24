@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+
+{% block title %}Collections - SSV AARI WORK{% endblock %}
+
+{% block content %}
+{% load static %}
+<div class="hero-section position-relative" style="background: linear-gradient(rgba(149, 1, 1, 0.7), rgba(255, 208, 53, 0.6)), url('{% if hero and hero.background_image %}{{ hero.background_image.url }}{% else %}{% static 'images/basiccollection.jpg' %}{% endif %}'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 60vh;">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-8 mx-auto text-center hero-content">
+                <div class="animate-fade-in">
+                    <h1 class="display-3 fw-bold text-white mb-4 hero-title" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+                        {% if hero %}{{ hero.title }}{% else %}Our <span style="color: #FFD035 !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Collections</span>{% endif %}
+                    </h1>
+                    <p class="lead text-white mb-5 fs-5" style="text-shadow: 1px 1px 2px rgba(0,0,0,0.8);">
+                        {% if hero %}{{ hero.subtitle }}{% else %}Discover our curated selection of exquisite AARI embroidery designs{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4">
+        <div class="animate-bounce">
+            <i class="fas fa-chevron-down text-white fa-2x opacity-75"></i>
+        </div>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="container">
+        <!-- Collection Categories -->
+        <div class="row mb-5">
+            <div class="col-12 text-center animate-fade-in">
+                <h2 class="display-6 fw-bold mb-3">Explore Our Collections</h2>
+                <p class="lead text-muted">From traditional classics to contemporary masterpieces</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {% for collection in collections %}
+            <div class="col-lg-4 animate-slide-up">
+                <div class="card h-100 border-0 shadow-lg position-relative overflow-hidden">
+                    <div class="card-img-top position-relative" style="height: 250px; background: linear-gradient(rgba(149, 1, 1, 0.4), rgba(255, 208, 53, 0.3)), url('{% if collection.image %}{{ collection.image.url }}{% else %}{% static 'images/basiccollection.jpg' %}{% endif %}'); background-size: cover; background-position: center;">
+                        <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+                            <i class="fas fa-crown fa-4x mb-3 opacity-75"></i>
+                            <h5 class="fw-bold">{{ collection.name }}</h5>
+                        </div>
+                        <div class="position-absolute bottom-0 start-0 w-100" style="height: 80px; background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);"></div>
+                    </div>
+                    <div class="card-body p-4">
+                        <p class="card-text text-muted mb-4">
+                            {% if collection.description %}{{ collection.description }}{% else %}Exquisite AARI designs showcasing traditional craftsmanship and modern aesthetics.{% endif %}
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <a href="{% if collection.button_url %}{{ collection.button_url }}{% else %}#{% endif %}" class="btn" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.5rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3); font-weight: 600;">
+                                <i class="fas fa-eye me-1"></i>{% if collection.button_text %}{{ collection.button_text }}{% else %}View Collection{% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Featured Items -->
+        <div class="row mt-5">
+            <div class="col-12 text-center mb-5 animate-fade-in">
+                <h3 class="display-6 fw-bold">Featured Masterpieces</h3>
+                <p class="lead text-muted">Handpicked pieces that showcase exceptional artistry</p>
+            </div>
+
+            {% for arrival in arrivals %}
+            <div class="col-md-6 mb-4 animate-bounce-in" style="padding: 0 15px;">
+                <div class="card border-0 shadow-sm">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <div style="height: 200px; background: linear-gradient(rgba(149, 1, 1, 0.3), rgba(255, 208, 53, 0.2)), url('{% if arrival.image %}{{ arrival.image.url }}{% else %}{% static 'images/basiccollection.jpg' %}{% endif %}'); background-size: cover; background-position: center; border-radius: 10px 0 0 10px;"></div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ arrival.name }}</h5>
+                                <p class="card-text text-muted">{% if arrival.description %}{{ arrival.description }}{% else %}Exquisite AARI work featuring traditional motifs and premium craftsmanship.{% endif %}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 text-primary mb-0">₹{{ arrival.price|default:"15,000" }}</span>
+                                    <a href="https://wa.me/917639027885?text=Hi!%20I%20would%20like%20to%20enquire%20about%20{{ arrival.name|urlencode }}%20-%20Price:%20₹{{ arrival.price|default:'15,000'|urlencode }}%20-%20Please%20provide%20more%20details%20and%20availability."
+                                       target="_blank"
+                                       class="btn"
+                                       style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.5rem 1rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3); font-weight: 600;">
+                                        {% if arrival.button_text %}{{ arrival.button_text }}{% else %}Enquiry Now{% endif %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Custom Orders CTA -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card border-0 shadow-lg text-white text-center p-5 animate-fade-in" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%);">
+                    <h3 class="mb-3">Custom Orders</h3>
+                    <p class="lead mb-4">
+                        Have a specific design in mind? We specialize in creating custom AARI pieces tailored to your unique vision and preferences.
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'contact' %}" class="btn" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1.5rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3); font-weight: 600;">
+                            <i class="fas fa-quote-left me-2"></i>Get Custom Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workshops CTA -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card border-0 shadow-sm bg-light text-center p-4 animate-slide-up">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4 class="mb-2">{% if academy %}{{ academy.title }}{% else %}Learn AARI Embroidery{% endif %}</h4>
+                            <p class="text-muted mb-0">
+                                {% if academy %}{{ academy.description }}{% else %}Master the art of AARI embroidery through our hands-on workshops and training sessions with expert artisans.{% endif %}
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{% url 'ssv_academy' %}" class="btn" style="background: linear-gradient(135deg, #950101 0%, #FF0000 100%); border: none; color: #FFD035; border-radius: 10px; padding: 0.75rem 1.5rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(149, 1, 1, 0.3); font-weight: 600; width: 100%;">
+                                <i class="fas fa-graduation-cap me-2"></i>{% if academy and academy.button_text %}{{ academy.button_text }}{% else %}Explore Academy{% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hero-section .text-gradient {
+        color: #FFD035 !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        background: none !important;
+        -webkit-background-clip: unset !important;
+        -webkit-text-fill-color: #FFD035 !important;
+        background-clip: unset !important;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-img-top {
+        transition: transform 0.3s ease;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+
+    .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .card-img-top::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        transition: transform 0.3s ease;
+        z-index: -1;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* Responsive button sizing for mobile */
+    .btn-sm-mobile {
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 576px) {
+        .btn-sm-mobile {
+            padding: 10px 16px;
+            font-size: 14px;
+            min-width: auto;
+        }
+
+        .bg-gradient {
+            padding: 20px !important;
+        }
+
+        .card-img-top {
+            height: 200px !important;
+        }
+
+        .col-lg-4 {
+            margin-bottom: 20px;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+{% endblock %}
