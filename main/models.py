@@ -248,6 +248,7 @@ class AcademyCTA(models.Model):
         return self.title
 
 class HomeTestimonial(models.Model):
+    video_title = models.CharField(max_length=150, blank=True, default="", help_text="Title to display for the testimonial video")
     name = models.CharField(max_length=100, default="Customer Name")
     content = models.TextField(default="Amazing service and quality work!")
     video = models.FileField(upload_to='testimonials/videos/', blank=True, null=True, help_text="Upload customer testimonial video")

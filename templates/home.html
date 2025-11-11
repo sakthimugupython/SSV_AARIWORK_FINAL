@@ -516,62 +516,183 @@
         </div>
 
         <div class="position-relative">
+            <button type="button" class="testimonial-arrow testimonial-arrow-left d-none d-md-flex" aria-label="Previous testimonial">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
             <!-- Scroll Container -->
-            <div class="testimonials-scroll-container d-flex gap-3 gap-md-4 overflow-hidden" style="scrollbar-width: none !important; -ms-overflow-style: none !important; overflow: -moz-scrollbars-none !important; -webkit-overflow-scrolling: touch;" onscroll="this.style.overflow='hidden';">
+            <div id="testimonialContainer" class="testimonials-scroll-container d-flex gap-3 gap-md-4 overflow-auto" style="scrollbar-width: none !important; -ms-overflow-style: none !important; overflow: -moz-scrollbars-none !important; -webkit-overflow-scrolling: touch;">
                 {% for testimonial in testimonials %}
-                <div class="testimonial-card flex-shrink-0" style="width: 300px;">
+                <div class="testimonial-card flex-shrink-0" data-index="{{ forloop.counter0 }}" style="width: 300px;">
                     <div class="card border-0 shadow-sm h-100 text-center">
                         {% if testimonial.video %}
-                        <div class="testimonial-video mb-3" style="width: 100%; height: 500px; overflow: hidden; border-radius: 10px;">
+                        <div class="testimonial-video mb-3">
                             <video class="w-100 h-100" style="object-fit: cover; cursor: pointer;" onmouseenter="this.play()" onmouseleave="this.pause()">
                                 <source src="{{ testimonial.video.url }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
                         {% endif %}
-                        <div class="card-body p-4">
-                            <p class="testimonial-content text-muted mb-3">"{{ testimonial.content }}"</p>
-                            <h6 class="testimonial-name fw-bold" style="color: #950101;">{{ testimonial.name }}</h6>
-                        </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
 
-            <!-- Navigation Arrows -->
-            <button class="scroll-arrow scroll-arrow-left position-absolute top-50 start-0 translate-middle-y d-none d-md-block" onclick="scrollTestimonials('left')">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="scroll-arrow scroll-arrow-right position-absolute top-50 end-0 translate-middle-y d-none d-md-block" onclick="scrollTestimonials('right')">
+            <button type="button" class="testimonial-arrow testimonial-arrow-right d-none d-md-flex" aria-label="Next testimonial">
                 <i class="fas fa-chevron-right"></i>
             </button>
-        </div>
-    </div>
-</div>
 
-<!-- Why Choose SSV Aari Work Section -->
-<div class="content-section py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-6 fw-bold mb-2" style="color: #950101;">Why Choose SVV Aari Work?</h2>
-        </div>
-
-        <div class="row g-3 justify-content-center">
-            {% for feature in features %}
-            <div class="col-lg col-md-4 col-sm-6 animate-zoom-in">
-                <div class="feature-card text-center p-3 bg-white rounded-3 shadow-sm h-100">
-                    <div class="feature-icon mb-2">
-                        <div class="icon-circle mx-auto" style="width: 60px; height: 60px; background: linear-gradient(135deg, #800000 0%, #FFD035 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                            <i class="{{ feature.icon_class }} fa-lg text-white"></i>
-                        </div>
-                    </div>
-                    <h6 class="fw-bold mb-1">{{ feature.title }}</h6>
-                    <p class="text-muted small mb-0">{{ feature.description }}</p>
-                </div>
+            {% if testimonials %}
+            <div class="testimonial-dots mt-4 d-flex justify-content-center align-items-center gap-2" aria-hidden="true">
+                {% for testimonial in testimonials %}
+                <span class="testimonial-dot{% if forloop.first %} active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
+                {% endfor %}
             </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('testimonialContainer');
+    if (!container) {
+        return;
+    }
+
+    const cards = Array.from(container.querySelectorAll('.testimonial-card'));
+    const dots = Array.from(document.querySelectorAll('.testimonial-dot'));
+    const arrowLeft = document.querySelector('.testimonial-arrow-left');
+    const arrowRight = document.querySelector('.testimonial-arrow-right');
+    const videos = Array.from(container.querySelectorAll('video'));
+
+    if (!dots.length) {
+        return;
+    }
+
+    let activeIndex = dots.findIndex((dot) => dot.classList.contains('active'));
+    if (activeIndex < 0) {
+        activeIndex = 0;
+    }
+
+    function updateArrows() {
+        if (arrowLeft) {
+            if (activeIndex <= 0) {
+                arrowLeft.classList.add('disabled');
+                arrowLeft.setAttribute('disabled', 'disabled');
+            } else {
+                arrowLeft.classList.remove('disabled');
+                arrowLeft.removeAttribute('disabled');
+            }
+        }
+
+        if (arrowRight) {
+            if (activeIndex >= cards.length - 1) {
+                arrowRight.classList.add('disabled');
+                arrowRight.setAttribute('disabled', 'disabled');
+            } else {
+                arrowRight.classList.remove('disabled');
+                arrowRight.removeAttribute('disabled');
+            }
+        }
+    }
+
+    function setActiveDot(index) {
+        dots.forEach((dot, idx) => {
+            if (idx === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+        activeIndex = index;
+        updateArrows();
+    }
+
+    function pauseAllVideos() {
+        videos.forEach((video) => {
+            video.pause();
+        });
+    }
+
+    function scrollToCard(index) {
+        const card = cards[index];
+        if (!card) {
+            return;
+        }
+
+        const targetScroll = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
+        container.scrollTo({ left: targetScroll, behavior: 'smooth' });
+
+        pauseAllVideos();
+        const video = card.querySelector('video');
+        if (video) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(() => {});
+                });
+            }
+        }
+
+        setActiveDot(index);
+    }
+
+    dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+            const index = parseInt(dot.dataset.index, 10);
+            if (!Number.isNaN(index)) {
+                scrollToCard(index);
+            }
+        });
+    });
+
+    if (arrowLeft) {
+        arrowLeft.addEventListener('click', () => {
+            if (activeIndex > 0) {
+                scrollToCard(activeIndex - 1);
+            }
+        });
+    }
+
+    if (arrowRight) {
+        arrowRight.addEventListener('click', () => {
+            if (activeIndex < cards.length - 1) {
+                scrollToCard(activeIndex + 1);
+            }
+        });
+    }
+
+    let scrollTimeout;
+    container.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(() => {
+            const midpoint = container.scrollLeft + container.clientWidth / 2;
+            let nearestIndex = 0;
+            let smallestDistance = Number.POSITIVE_INFINITY;
+
+            cards.forEach((card, index) => {
+                const cardCenter = card.offsetLeft + card.clientWidth / 2;
+                const distance = Math.abs(cardCenter - midpoint);
+                if (distance < smallestDistance) {
+                    nearestIndex = index;
+                    smallestDistance = distance;
+                }
+            });
+
+            setActiveDot(nearestIndex);
+        }, 100);
+    });
+
+    updateArrows();
+});
+</script>
+{% endblock %}
+
 {% endblock %}
     

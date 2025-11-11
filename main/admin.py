@@ -100,6 +100,8 @@ class AcademyCTAAdmin(admin.ModelAdmin):
 
 @admin.register(HomeTestimonial)
 class HomeTestimonialAdmin(admin.ModelAdmin):
-    list_display = ['name', 'order']
+    list_display = ['video_title', 'order']
     list_editable = ['order']
     ordering = ['order']
+    list_display_links = ['video_title']
+    exclude = ['name', 'content']
